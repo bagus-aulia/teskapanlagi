@@ -1,10 +1,10 @@
 ## Deploy ke Heroku
 
-### Pengecekan Aplikasi Pendukung Heroku
+### 1. Pengecekan Aplikasi Pendukung Heroku
 
 Untuk men-deploy aplikasi Laravel ke [Heroku](https://www.heroku.com/), Anda harus mempunyai akun Heroku terlebih dahulu. Anda bisa [login](https://id.heroku.com/login) atau [daftar](https://signup.heroku.com/login). Setelah akun Anda terverifikasi, pastikan Anda sudah mempunyai Aplikasi Heroku, PHP (XAMPP atau WAMP), Composer, dan Git di komputer Anda. Apabila belum, Anda bisa mendownload dipage ini : [Download Heroku](https://devcenter.heroku.com/articles/getting-started-with-php#set-up), [Download WAMP](https://bitnami.com/stack/wamp/installer), [Download XAMPP](https://www.apachefriends.org/download.html), [Download Composer](https://getcomposer.org/download/), [Download Git](https://git-scm.com/downloads).
 
-Lakukan pengecekan apakah aplikasi diatas sudah terpasang dengan menjalankan Command Prompt (cmd.exe)
+Lakukan pengecekan apakah aplikasi di atas sudah terpasang dengan menjalankan Command Prompt (cmd.exe)
 - **Heroku**, login dengan akun heroku Anda.
 <pre>
 C:\Users\Anonim>heroku login
@@ -34,7 +34,8 @@ C:\Users\Anonim>git --version
 git version 2.18.0.windows.1
 </pre>
 
-### Pembuatan Project dan File Konfigurasi Heroku
+
+### 2. Pembuatan Project dan File Konfigurasi Heroku
 
 Setelah keempat aplikasi diatas sudah terinstall, buatlah project Laravel dengan perintah :
 <pre>
@@ -58,7 +59,8 @@ web: vendor/bin/heroku-php-apache2 public/
 </pre>
 *(public merupakan folder index.php milik Laravel berada)*
 
-### Inisialisasi Git
+
+### 3. Inisialisasi Git
 
 Inisialisasikan git ke dalam folder project Anda dengan perintah cmd :
 <pre>
@@ -90,14 +92,15 @@ Kemudian untuk melakukan commit atau mencatat proses dari penambahan atau peruba
 <pre>
 C:\xampp\htdocs\tes_kapanlagi>git commit -m "Commit Pertama"
 </pre>
-*("Commit Pertama" bisa Anda isi proses yang sudah Anda tambahkan pada script Anda)*
+*("Commit Pertama" bisa Anda isi keterangan proses yang sudah Anda tambahkan pada script Anda)*
 
 Upload git Anda ke Heroku dengan perintah
 <pre>
 C:\xampp\htdocs\tes_kapanlagi>git push heroku master
 </pre>
 
-### Pengaturan ENV Pada Heroku
+
+### 4. Pengaturan ENV Pada Heroku
 
 Agar Laravel Anda bisa diakses, tambahkan perintah berikut untuk mengkonfigurasi project Laravel dengan domainnnya. Rincian APP bisa Anda lihat di dalam file .env pada folder project Anda.
 <pre>
@@ -109,8 +112,13 @@ C:\xampp\htdocs\tes_kapanlagi>heroku config:add APP_LOG_LEVEL=log
 C:\xampp\htdocs\tes_kapanlagi>heroku config:add APP_URL=https://evening-forest-35613.herokuapp.com/
 </pre>
 (**APP_NAME**      berisi nama project Anda)
+
 (**APP_ENV**       diisi production agar bisa diakses dalam bentuk alamat web)
+
 (**APP_KEY**       berisi key project Anda)
+
 (**APP_DEBUG**     bernilai true)
+
 (**APP_LOG_LEVEL** berisi log)
+
 (**APP_URL**       berisi domain yang telah Anda peroleh dari Heroku)
