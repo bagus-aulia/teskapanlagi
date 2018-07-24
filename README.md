@@ -1,8 +1,8 @@
 ## Deploy ke Heroku
 
-Untuk men-deploy aplikasi Laravel ke [Heroku](https://www.heroku.com/), Anda harus mempunyai akun Heroku terlebih dahulu. Anda bisa [login](https://id.heroku.com/login) atau [daftar](https://signup.heroku.com/login).
+### Pengecekan Aplikasi Pendukung Heroku
 
-Setelah akun Anda terverifikasi, pastikan Anda sudah mempunyai Aplikasi Heroku, PHP (XAMPP atau WAMP), Composer, dan Git di komputer Anda. Apabila belum, Anda bisa mendownload dipage ini : [Download Heroku](https://devcenter.heroku.com/articles/getting-started-with-php#set-up), [Download WAMP](https://bitnami.com/stack/wamp/installer), [Download XAMPP](https://www.apachefriends.org/download.html), [Download Composer](https://getcomposer.org/download/), [Download Git](https://git-scm.com/downloads).
+Untuk men-deploy aplikasi Laravel ke [Heroku](https://www.heroku.com/), Anda harus mempunyai akun Heroku terlebih dahulu. Anda bisa [login](https://id.heroku.com/login) atau [daftar](https://signup.heroku.com/login). Setelah akun Anda terverifikasi, pastikan Anda sudah mempunyai Aplikasi Heroku, PHP (XAMPP atau WAMP), Composer, dan Git di komputer Anda. Apabila belum, Anda bisa mendownload dipage ini : [Download Heroku](https://devcenter.heroku.com/articles/getting-started-with-php#set-up), [Download WAMP](https://bitnami.com/stack/wamp/installer), [Download XAMPP](https://www.apachefriends.org/download.html), [Download Composer](https://getcomposer.org/download/), [Download Git](https://git-scm.com/downloads).
 
 Lakukan pengecekan apakah aplikasi diatas sudah terpasang dengan menjalankan Command Prompt (cmd.exe)
 - **Heroku**, login dengan akun heroku Anda.
@@ -28,46 +28,89 @@ C:\Users\Anonim>composer -v
 Composer version 1.6.5 2018-05-04 11:44:59
 </pre>
 
-## Cara Penggunaan
+- **Git**, tutorial pengecekan Git telah terinstall
+<pre>
+C:\Users\Anonim>git --version
+git version 2.18.0.windows.1
+</pre>
 
-Aplikasi ini menggunakan penyimpanan data ke file txt. File akan tersimpan di direktori **storage/app/biodata**. Demo aplikasi bisa diakses di [https://evening-forest-35613.herokuapp.com/](https://evening-forest-35613.herokuapp.com/).
+### Pembuatan Project dan File Konfigurasi Heroku
 
-Pada halaman utama, akan ditampilkan form untuk mengisi biodata.
+Setelah keempat aplikasi diatas sudah terinstall, buatlah project Laravel dengan perintah :
+<pre>
+C:\xampp\htdocs>composer create-project –prefer-dist laravel/laravel tes_kapanlagi
+</pre>
+*(tes_kapanlagi menunjukkan folder project. Bisa Anda sesuaikan dengan project Anda)*
 
-## Cara Pembuatan Aplikasi
+Setelah proses create-project selesai, masuklah ke dalam folder project Anda dan lakukan login ke heroku
+<pre>
+C:\xampp\htdocs>cd tes_kapanlagi
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+C:\xampp\htdocs\tes_kapanlagi>heroku login
+Enter your Heroku credentials.
+Email: penggguna@contoh.com
+Password: *****************
+</pre>
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+Buatlah file bernama `Procfile` tanpa ekstensi di dalam folder project Anda. Procfile merupakan file konfigurasi untuk heroku. Karena Laravel merupakan bahasa pemrograman PHP dan menggunakan web server apache, isikan file Procfile dengan script berikut
+<pre>
+web: vendor/bin/heroku-php-apache2 public/
+</pre>
+*(public merupakan folder index.php milik Laravel berada)*
 
-## Laravel Sponsors
+### Inisialisasi Git
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+Inisialisasikan git ke dalam folder project Anda dengan perintah cmd :
+<pre>
+C:\xampp\htdocs\tes_kapanlagi>git init
+</pre>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
+Kemudian buatlah app heroku dengan perintah :
+<pre>
+C:\xampp\htdocs\tes_kapanlagi>heroku create
+</pre>
 
-## Contributing
+Apabila selesai, Anda akan mendapatkan alamat domain dan folder repository dari Heroku
+*(cth domain     = https://evening-forest-35613.herokuapp.com/)*
+*(cth repository = https://git.heroku.com/evening-forest-35613.git)*
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Build aplikasi Anda dengan perintah
+<pre>
+C:\xampp\htdocs\tes_kapanlagi>heroku buildpacks:set heroku/php
+</pre>
+*(heroku/php menunjukkan bahasa pemrograman yang Anda gunakan)*
 
-## Security Vulnerabilities
+Untuk menambahkan file project Anda ke dalam repository git, ketikkan perintah
+<pre>
+C:\xampp\htdocs\tes_kapanlagi>git add .
+</pre>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+Kemudian untuk melakukan commit atau mencatat proses dari penambahan atau perubahan script, ketikkan perintah
+<pre>
+C:\xampp\htdocs\tes_kapanlagi>git commit -m "Commit Pertama"
+</pre>
+*("Commit Pertama" bisa Anda isi proses yang sudah Anda tambahkan pada script Anda)*
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Upload git Anda ke Heroku dengan perintah
+<pre>
+C:\xampp\htdocs\tes_kapanlagi>git push heroku master
+</pre>
+
+### Pengaturan ENV Pada Heroku
+
+Agar Laravel Anda bisa diakses, tambahkan perintah berikut untuk mengkonfigurasi project Laravel dengan domainnnya. Rincian APP bisa Anda lihat di dalam file .env pada folder project Anda.
+<pre>
+C:\xampp\htdocs\tes_kapanlagi>heroku config:add APP_NAME=TesKapanlagi
+C:\xampp\htdocs\tes_kapanlagi>heroku config:add APP_ENV=production
+C:\xampp\htdocs\tes_kapanlagi>heroku config:add APP_KEY=base64:SamS5VUd1dfJBRueY8hVFO75QBdPPptIlZefg18gIO0=
+C:\xampp\htdocs\tes_kapanlagi>heroku config:add APP_DEBUG=true
+C:\xampp\htdocs\tes_kapanlagi>heroku config:add APP_LOG_LEVEL=log
+C:\xampp\htdocs\tes_kapanlagi>heroku config:add APP_URL=https://evening-forest-35613.herokuapp.com/
+</pre>
+(**APP_NAME**      berisi nama project Anda)
+(**APP_ENV**       diisi production agar bisa diakses dalam bentuk alamat web)
+(**APP_KEY**       berisi key project Anda)
+(**APP_DEBUG**     bernilai true)
+(**APP_LOG_LEVEL** berisi log)
+(**APP_URL**       berisi domain yang telah Anda peroleh dari Heroku)
