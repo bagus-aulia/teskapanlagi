@@ -66,7 +66,7 @@ class Biodata extends Model
         //jika ada, file dibaca.
         if($fileExsist){
             $data         = Storage::get('biodata/'.$namaFile);
-            $dataArray    = explode(",", $data);
+            $dataArray    = explode(",", /** @scrutinizer ignore-type */ $data);
             $banyakData   = count($dataArray);
             $dataDanField = array();
 

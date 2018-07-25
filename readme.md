@@ -159,4 +159,4 @@ Untuk men-deploy aplikasi Anda ke Github, Anda harus memiliki akun Github. Anda 
 - Karena di langkah ke 2 Anda sudah mempunyai repository, klik tombol `Clone a Repository`.
 - Pilih repository yang ingin Anda clone.
 - Masukkan alamat tempat project Anda berada pada inputan Local Path. *Contoh : C:\xampp\htdocs\tes_kapanlagi*
-- Klik tombol
+- Klik tombol `Clone`
