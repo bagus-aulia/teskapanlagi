@@ -13,7 +13,7 @@ class BiodataController extends Controller
         return view('biodata/form');
     }
 
-    public function edit($namaFile, Request $request)
+    public function edit($namaFile)
     {
        //normalisasi data
        $namaFile         = urldecode($namaFile).".txt";
