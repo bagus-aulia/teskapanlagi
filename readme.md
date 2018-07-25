@@ -38,7 +38,6 @@ C:\Users\Anonim>git --version
 git version 2.18.0.windows.1
 </pre>
 
-
 ### 2. Pembuatan Project dan File Konfigurasi Heroku
 
 Setelah keempat aplikasi diatas sudah terinstall, buatlah project Laravel dengan perintah :
@@ -62,7 +61,6 @@ Buatlah file bernama `Procfile` tanpa ekstensi di dalam folder project Anda. Pro
 web: vendor/bin/heroku-php-apache2 public/
 </pre>
 *(public merupakan folder index.php milik Laravel berada)*
-
 
 ### 3. Inisialisasi Git
 
@@ -102,7 +100,6 @@ Upload git Anda ke Heroku dengan perintah
 C:\xampp\htdocs\tes_kapanlagi>git push heroku master
 </pre>
 
-
 ### 4. Pengaturan ENV Pada Heroku
 
 Agar Laravel Anda bisa diakses, tambahkan perintah berikut untuk mengkonfigurasi project Laravel dengan domainnnya. Rincian APP bisa Anda lihat di dalam file .env pada folder project Anda.
@@ -125,7 +122,6 @@ C:\xampp\htdocs\tes_kapanlagi>heroku config:add APP_URL=https://evening-forest-3
 (**APP_LOG_LEVEL** berisi log)
 
 (**APP_URL**       berisi domain yang telah Anda peroleh dari Heroku)
-
 
 ### 5. Push ke Heroku
 
@@ -160,11 +156,13 @@ Untuk men-deploy aplikasi Anda ke Github, Anda harus memiliki akun Github. Anda 
 - Pilih repository yang ingin Anda clone.
 - Masukkan alamat tempat project Anda berada pada inputan Local Path. *Contoh : C:\xampp\htdocs\tes_kapanlagi*
 - Klik tombol `Clone`
+- *(Apabila cloning gagal, buatlah folder kosong dan arahkan Local Path GitHub ke alamat folder kosong tersebut.)*
+- *(Setelah cloning selesai, copy and replace project Anda sebelumnya ke folder kosong tersebut.)*
 - Setelah proses cloning selesai, Anda akan ditampilkan daftar perubahan file dan inputan untuk Commit.
 - Isi inputan `Summary` dengan keterangan commit Anda. Dan isi inputan `Description` apabila diperlukan.
 - Klik tombol `Commit to master`.
 - Klik tombol `Push origin` yang terletak pada toolbar di atas halaman.
-- Cek kembali halaman reposity GitHub Anda.
+- Cek kembali halaman repository GitHub Anda.
 
 
 ## Integrasi ke Scrutinizer
@@ -195,3 +193,38 @@ The repository was created. What's next?
 - Add collaborators to your repository
 </pre>
 - Nilai script Anda akan muncul setelah beberapa menit.
+
+
+## Penggunaan Aplikasi
+
+### [Halaman Utama](https://evening-forest-35613.herokuapp.com)
+
+Pada halaman utama, Anda akan ditampilkan form mengisi Biodata yang membutuhkan data Nama, Email, Tanggal Lahir dan Alamat. Setelah disimpan, Anda akan ditampilkan [halaman pesan](https://evening-forest-35613.herokuapp.com/biodata/pesan.html) berisi teks "Terima kasih telah mengisi form".
+
+### [Halaman Daftar File](https://evening-forest-35613.herokuapp.com/biodata/list.html)
+
+Pada halaman daftar file, Anda akan ditampilkan daftar file yang telah tersimpan menggunakan aplikasi ini. Anda bisa mengedit ataupun menghapus file tersebut. Apabila Anda mengedit data, Anda akan diarahkan ke halaman https://evening-forest-35613.herokuapp.com/biodata/{namaFile}. {namaFile} akan disesuaikan berdasarkan nama file yang Anda ingin perbarui.
+
+
+## Spesifikasi Form Biodata
+
+### Form Biodata
+
+Form biodata menggunakan helper [Laravel Collective](https://laravelcollective.com/docs/master/html) untuk memudahkan penulisan script. Selain itu, terdapat validasi karakter "," pada semua inputan text. Validasi tersebut menggunakan Jquery yang terletak di `/public/js/custom.js` dengan nama function `keyVallidate`.
+
+### Menyimpan Data Kedalam File txt
+
+Sebelum data disimpan ke dalam file txt, data tersebut divalidasi terlebih dahulu apakah inputan sudah sesuai dengan rules dari Laravel. Validasi tersebut terletak di `/app/Http/Controllers/BiodataController.php` dengan nama function `store`. Pada function ini juga terdapat pengecekean karakter "," yang akan dihapus sebelum disimpan ke dalam file berformat .txt. Penyimpanan data tersebut menggunakan fitur `Storage` dari Laravel. Script tersebut terletak di `/app/Models/Biodata.php` dengan nama function `saveToFile`.
+
+### Halaman Feedback
+
+Setelah data telah tersimpan, Anda akan diredirect ke halaman feedback. Halaman ini berisi pesan penyimpanan bertuliskan "Terima kasih telah mengisi form. Data Arthur berhasil disimpan!". Namun, apabila mengakses halaman ini tanpa mengisi form, pesan akan bertuliskan "Silahkan menuju halaman utama untuk mengisi form.". Untuk mengubah pesan tersebut, bisa Anda lihat di `/resources/views/biodata/message.blade.php`.
+
+### Halaman Daftar File
+
+Daftar semua file akan ditampilkan di halaman ini. Anda bisa memperbarui dan menghapus file yang Anda kehendaki. Terdapat beberapa proses yang berada di Halaman ini, yaitu sebagai berikut :
+- Script untuk menampilkan semua daftar file berada di `/app/Http/Controllers/BiodataController.php` dengan nama function `show` dengan diproses terlebih dahulu pada model di `/app/Models/Biodata.php` dengan nama function `getAllFiles`.
+- Sedangkan script untuk menampilkan data dari file yang akan diperbarui berada di `/app/Http/Controllers/BiodataController.php` dengan nama function `edit` dengan diproses terlebih dahulu menggunakan model di `/app/Models/Biodata.php` dengan nama function `getFile`. Apabila file yang ingin Anda perbarui tidak ada dalam direktori, akan muncul pesan "File Henryk tidak ditemukan!" dan penginputan pada form tersebut akan disimpan sebagai file baru.
+- Dan script untuk menghapus file berada di `/app/Http/Controllers/BiodataController.php` dengan nama function `destroy` dengan diproses terlebih dahulu menggunakan model di `/app/Models/Biodata.php` dengan nama function `deleteFile`. Apabila file telah terhapus, di halaman daftar file akan muncul informasi berupa div alert berisi pesan "File Henryk berhasil dihapus.".
+
+2018 - Bagus Aulia Al Ilhami
