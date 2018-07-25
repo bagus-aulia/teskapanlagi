@@ -43,7 +43,7 @@ git version 2.18.0.windows.1
 
 Setelah keempat aplikasi diatas sudah terinstall, buatlah project Laravel dengan perintah :
 <pre>
-C:\xampp\htdocs>composer create-project –prefer-dist laravel/laravel tes_kapanlagi
+C:\xampp\htdocs>composer create-project –-prefer-dist laravel/laravel tes_kapanlagi
 </pre>
 *(tes_kapanlagi menunjukkan folder project. Bisa Anda sesuaikan dengan project Anda)*
 
@@ -91,7 +91,6 @@ Untuk menambahkan file project Anda ke dalam repository git, ketikkan perintah
 C:\xampp\htdocs\tes_kapanlagi>git add .
 </pre>
 
-
 Kemudian untuk melakukan commit atau mencatat proses dari penambahan atau perubahan script, ketikkan perintah
 <pre>
 C:\xampp\htdocs\tes_kapanlagi>git commit -m "Commit Pertama"
@@ -128,6 +127,18 @@ C:\xampp\htdocs\tes_kapanlagi>heroku config:add APP_URL=https://evening-forest-3
 (**APP_URL**       berisi domain yang telah Anda peroleh dari Heroku)
 
 
+### 5. Push ke Heroku
+
+Apabila ada perubahan script, Anda bisa melakukan langkah ini
+<pre>
+C:\xampp\htdocs\tes_kapanlagi>git add .
+
+C:\xampp\htdocs\tes_kapanlagi>git commit -m "Keterangan Commit"
+
+C:\xampp\htdocs\tes_kapanlagi>git push heroku master
+</pre>
+
+
 ## Deploy ke Github
 
 ### 1. Masuk ke Web Github
@@ -142,7 +153,10 @@ Untuk men-deploy aplikasi Anda ke Github, Anda harus memiliki akun Github. Anda 
 
 ### 3. Mengupload File
 
-- Klik tombol `Upload Files`
-- Upload file dengan mengklik `choose your files`. *(disarankan untuk meng-compress folder ke dalam ekstensi .zip untuk memudahkan proses upload)*
-- Isi keterangan Commit
-- Klik tombol `Commit changes`
+- Download dan install [GitHub Desktop](https://desktop.github.com/) untuk memudahkan Anda mengupload file project Anda ke Github.
+- Klik tombol `Connect to GitHub`
+- Login ke Akun Anda
+- Karena di langkah ke 2 Anda sudah mempunyai repository, klik tombol `Clone a Repository`.
+- Pilih repository yang ingin Anda clone.
+- Masukkan alamat tempat project Anda berada pada inputan Local Path. *Contoh : C:\xampp\htdocs\tes_kapanlagi*
+- Klik tombol
