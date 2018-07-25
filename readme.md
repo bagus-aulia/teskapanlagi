@@ -160,3 +160,38 @@ Untuk men-deploy aplikasi Anda ke Github, Anda harus memiliki akun Github. Anda 
 - Pilih repository yang ingin Anda clone.
 - Masukkan alamat tempat project Anda berada pada inputan Local Path. *Contoh : C:\xampp\htdocs\tes_kapanlagi*
 - Klik tombol `Clone`
+- Setelah proses cloning selesai, Anda akan ditampilkan daftar perubahan file dan inputan untuk Commit.
+- Isi inputan `Summary` dengan keterangan commit Anda. Dan isi inputan `Description` apabila diperlukan.
+- Klik tombol `Commit to master`.
+- Klik tombol `Push origin` yang terletak pada toolbar di atas halaman.
+- Cek kembali halaman reposity GitHub Anda.
+
+
+## Integrasi ke Scrutinizer
+
+### 1. Masuk ke Scrutinizer
+
+Untuk mengintegrasikan aplikasi Anda ke Scrutinizer, Anda harus login terlebih dahulu menggunakan akun GitHub. [Login](https://scrutinizer-ci.com/login).
+
+### 2. Authorize Scrutinizer ke Akun GitHub
+
+### 3. Melengkapi Informasi Akun
+
+Apabila Anda belum mempunyai akun Scrutinizer, Anda akan diminta untuk melengkapi informasi akun Anda.
+
+### 4. Menghubungkan Repository Scrutinizer dan GitHub
+
+- Klik tombol `GitHub`.
+- Isi GitHub Repository dengan alamat Repository Anda. *Contoh : bagusshinoda/teskapanlagi*
+- Isi Default Config dengan `PHP`.
+- Centang checkbox Test. Agar Scrutinizer menjalankan test pada script Anda.
+- Klik tombol `Add Repository`
+- Pada halaman repository, Anda akan ditampilkan nilai script Anda. Pilih `Run your first inspection (might take a few minutes longer)` pada pilihan
+<pre>
+The repository was created. What's next?
+- Run your first inspection (might take a few minutes longer)
+- Change the inspection configuration
+- Change the tracking/notification settings
+- Add collaborators to your repository
+</pre>
+- Nilai script Anda akan muncul setelah beberapa menit.
