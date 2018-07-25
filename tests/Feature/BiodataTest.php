@@ -26,7 +26,7 @@ class BiodataTest extends TestCase
         ]);
 
         // Assert the file was stored...
-        //Storage::disk('local')->assertExists('bio/bio-12122012121212.txt');
+        Storage::disk('local')->assertExists('bio/bio-12122012121212.txt');
 
         // Assert a file does not exist...
         Storage::disk('local')->assertMissing('bio/bio.txt');
